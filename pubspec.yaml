@@ -1,0 +1,35 @@
+name: youtube
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.0
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  flutter_bloc: ^9.1.0
+  flutter_svg: ^2.0.17
+  device_preview: ^1.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/vectors/cast.svg
+    - assets/vectors/explore.svg
+    - assets/vectors/home.svg
+    - assets/vectors/Logo.svg
+    - assets/vectors/notifications_none.svg
+    - assets/vectors/search.svg
+    - assets/vectors/subscriptions.svg
+    - assets/vectors/video_library.svg
+
+
