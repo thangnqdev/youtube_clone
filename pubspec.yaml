@@ -12,7 +12,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_bloc: ^9.1.0
   flutter_svg: ^2.0.17
-  device_preview: ^1.2.0
+  dio: ^5.8.0
+  get_it: ^8.0.3
 
 dev_dependencies:
   flutter_test:
@@ -23,13 +24,32 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/vectors/cast.svg
-    - assets/vectors/explore.svg
-    - assets/vectors/home.svg
-    - assets/vectors/Logo.svg
-    - assets/vectors/notifications_none.svg
-    - assets/vectors/search.svg
-    - assets/vectors/subscriptions.svg
-    - assets/vectors/video_library.svg
+    - assets/vectors/add_light_mode.svg
+    - assets/vectors/cast_light_mode.svg
+    - assets/vectors/explore_light_mode.svg
+    - assets/vectors/home_light_mode.svg
+    - assets/vectors/notification_light_mode.svg
+    - assets/vectors/search_light_mode.svg
+    - assets/vectors/subscription_light_mode.svg
+    - assets/vectors/library_light_mode.svg
+    - assets/vectors/youtube_shorts.svg
+
+    - assets/vectors/add_dark_mode.svg
+    - assets/vectors/cast_dark_mode.svg
+    - assets/vectors/explore_dark_mode.svg
+    - assets/vectors/home_dark_mode.svg
+    - assets/vectors/notification_dark_mode.svg
+    - assets/vectors/search_dark_mode.svg
+    - assets/vectors/subscription_dark_mode.svg
+    - assets/vectors/library_dark_mode.svg
+    - assets/vectors/more_vert.svg
+    - assets/vectors/more_vert_dark_mode.svg
+
+    - assets/images/logo_splash.png
+    - assets/images/logo_light_mode.png
+    - assets/images/logo_dark_mode.png
+    - assets/images/img_demo.png
+    - assets/images/img_demo2.png
+
 
 

@@ -1,13 +1,12 @@
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:youtube/core/di/dependency_injection.dart';
+import 'package:youtube/features/presentations/pages/home/bloc/list_video_bloc.dart';
 import 'package:youtube/features/presentations/pages/splash/pages/splash_page.dart';
+import 'package:youtube/features/presentations/widgets/theme/app_theme.dart';
 
 void main() {
-  DevicePreview(
-    enabled: !kReleaseMode,
-    builder: (context) => const MyApp(), // Wrap your app
-  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -16,10 +15,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      useInheritedMediaQuery: true,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
-      home: SplashPage(),
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightMode,
+      darkTheme: AppTheme.darkMode,
+      themeMode: ThemeMode.system,
+      home: BlocProvider(
+        create: (_) => sl<ListVideoBloc>(),
+        child: SplashPage(),
+      ),
     );
   }
 }
