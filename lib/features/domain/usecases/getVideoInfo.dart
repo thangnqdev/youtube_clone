@@ -6,7 +6,7 @@ class Getvideoinfo {
 
   Getvideoinfo(this.repository);
 
-  Future<InfoVideo> call(String videoId) async {
-    return await repository.getVideoInfo(videoId);
+  Future<List<InfoVideo>> call() async {
+    return await repository.getVideoInfo();
   }
 }

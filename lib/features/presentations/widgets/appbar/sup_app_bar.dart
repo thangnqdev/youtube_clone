@@ -24,7 +24,7 @@ class SupAppBar extends StatelessWidget {
           itemBuilder: (context, index) {
             if (index == 0) {
               return Container(
-                margin: EdgeInsets.only(right: 4.0),
+                margin: EdgeInsets.fromLTRB(0,4,4,4),
                 width: 100,
                 height: 34,
                 padding: EdgeInsets.fromLTRB(13, 8, 13, 8),
@@ -48,7 +48,7 @@ class SupAppBar extends StatelessWidget {
               return Container(
                 alignment: Alignment.center,
                 height: 34,
-                margin: EdgeInsets.symmetric(horizontal: 4.0),
+                margin: EdgeInsets.all(4.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: AppColors.primary,

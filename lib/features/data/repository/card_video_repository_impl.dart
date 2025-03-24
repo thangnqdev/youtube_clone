@@ -7,13 +7,8 @@ class CardVideoRepositoryImpl implements InfoVideoRepository {
 
   CardVideoRepositoryImpl(this.remoteDataSrources);
   @override
-  Future<InfoVideo> getVideoInfo(String videoId) async {
-    final model = await remoteDataSrources.getVideoInfor(videoId);
-    return InfoVideo(
-      title: model.title,
-      description: model.description,
-      thumbnailUrl: model.thumbnailUrl,
-      viewCount: model.viewCount,
-    );
+  Future<List<InfoVideo>> getVideoInfo() async {
+    final jsonData = await remoteDataSrources.getVideoInfo();
+    return jsonData.map((model) => InfoVideo(thumbnailUrl: model.thumbnailUrl, videoTitle: model.videoTitle, channelTitle: model.channelTitle, publishedAt: model.publishedAt, viewCount: model.viewCount)).toList();
   }
 }

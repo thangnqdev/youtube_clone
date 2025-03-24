@@ -14,7 +14,6 @@ dependencies:
   flutter_svg: ^2.0.17
   dio: ^5.8.0
   get_it: ^8.0.3
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -33,6 +32,10 @@ flutter:
     - assets/vectors/subscription_light_mode.svg
     - assets/vectors/library_light_mode.svg
     - assets/vectors/youtube_shorts.svg
+    - assets/vectors/click_home_light_mode.svg
+    - assets/vectors/click_explore_light_mode.svg
+    - assets/vectors/click_subscriptions_light_mode.svg
+    - assets/vectors/click_video_library_light_mode.svg
 
     - assets/vectors/add_dark_mode.svg
     - assets/vectors/cast_dark_mode.svg
@@ -44,12 +47,35 @@ flutter:
     - assets/vectors/library_dark_mode.svg
     - assets/vectors/more_vert.svg
     - assets/vectors/more_vert_dark_mode.svg
+    - assets/vectors/click_home_dark_mode.svg
+    - assets/vectors/click_explore_dark_mode.svg
+    - assets/vectors/click_subscriptions_dark_mode.svg
+    - assets/vectors/click_video_library_dark_mode.svg
+
+    - assets/vectors/ic_clothes.svg
+    - assets/vectors/ic_game.svg
+    - assets/vectors/ic_learn.svg
+    - assets/vectors/ic_live.svg
+    - assets/vectors/ic_movie.svg
+    - assets/vectors/ic_music.svg
+    - assets/vectors/ic_news.svg
+    - assets/vectors/ic_sport.svg
+    - assets/vectors/ic_trend.svg
 
     - assets/images/logo_splash.png
     - assets/images/logo_light_mode.png
     - assets/images/logo_dark_mode.png
     - assets/images/img_demo.png
     - assets/images/img_demo2.png
+    - assets/images/img_films.png
+    - assets/images/img_fob.png
+    - assets/images/img_gaming.png
+    - assets/images/img_learning.png
+    - assets/images/img_live.png
+    - assets/images/img_music.png
+    - assets/images/img_news.png
+    - assets/images/img_sport.png
+    - assets/images/img_trending.png
 
 
 

@@ -6,12 +6,12 @@ import 'package:youtube/features/presentations/pages/home/bloc/list_video_state.
 class ListVideoBloc extends Bloc<ListVideoEvent, ListVideoState> {
   final Getvideoinfo getvideoinfo;
 
-  ListVideoBloc(this.getvideoinfo) : super(ListVideoInital()) {
+  ListVideoBloc(this.getvideoinfo) : super(ListVideoLoading()) {
     on<FetchVideoYoutubeInfo>((event, emit) async {
       emit(ListVideoLoading());
       try {
-        final video = await getvideoinfo(event.videoId);
-        emit(ListVideoLoaded(video));
+        final video = await getvideoinfo();
+        emit(ListVideoSuccess(video));
       } catch (e) {
         emit(ListVideoError(e.toString()));
       }

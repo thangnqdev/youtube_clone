@@ -24,6 +24,7 @@ class BaseNavigationBar extends StatelessWidget {
       currentIndex: currentIndex,
       backgroundColor: backgroundColor,
       type: BottomNavigationBarType.fixed,
+      selectedItemColor: context.isDarkMode ? Colors.white :Colors.black,
       onTap: onTap,
       items: [
         BottomNavigationBarItem(
@@ -31,12 +32,12 @@ class BaseNavigationBar extends StatelessWidget {
             context.isDarkMode
                 ? AppVectors.homeDarkMode
                 : AppVectors.homeLightMode,
-          ),
+          ),    
           label: 'Home',
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
-            context.isDarkMode
+            context.isDarkMode    
                 ? AppVectors.exploreDarkMode
                 : AppVectors.exploreLightMode,
           ),
