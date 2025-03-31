@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "536624780271",
+    "project_id": "cl-aafe5",
+    "storage_bucket": "cl-aafe5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536624780271:android:d8b2cbdf726e71242d1c1a",
+        "android_client_info": {
+          "package_name": "com.example.youtube"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsDm4OeRpc-iLKHyosZIUblkwMcYtyLzs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

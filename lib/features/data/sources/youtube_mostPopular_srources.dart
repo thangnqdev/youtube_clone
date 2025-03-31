@@ -2,25 +2,24 @@ import 'package:youtube/core/constants/token/token.dart';
 import 'package:youtube/core/network/dio_client.dart';
 import 'package:youtube/features/data/models/card_video_model.dart';
 
-abstract class YoutubeRemoteSrources {
+abstract class YoutubeMostpopularSrources {
   Future<List<CardVideoModel>> getVideoInfo();
 }
 
-class YoutubeRemoteScroucesImp implements YoutubeRemoteSrources {
+class YoutubeMostpopularSrourcesImp implements YoutubeMostpopularSrources {
   final DioClient dioClient;
 
-  static const String apiKey = Token.token;
-  YoutubeRemoteScroucesImp(this.dioClient);
+  YoutubeMostpopularSrourcesImp(this.dioClient);
   @override
   Future<List<CardVideoModel>> getVideoInfo() async {
     try {
       final response = await dioClient.get(
         '/videos',
         queryParameters: {
-          'key': apiKey,
+          'key': Token.token,
           'part': 'snippet,statistics',
-          'chart': 'mostPopular'
-          
+          'chart': 'mostPopular',
+          'maxResults': '20',          
         },
       );
       if (response.statusCode == 200) {

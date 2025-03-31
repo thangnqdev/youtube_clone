@@ -13,12 +13,22 @@ class _ExplorePageState extends State<ExplorePage> {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Wrap(
-        runSpacing: 2,
-        spacing: 2,
-        children: List.generate(items.length, (index) {
-          return itemLayout(items[index], context);
-        }),
+      child: Column(
+        children: [
+          Column(
+            children: [
+              Wrap(
+                spacing: 2,
+                runSpacing: 2,
+                children: List.generate(items.length, (index) {
+                  return itemLayout(items[index], context);
+                }),
+              ),
+              SizedBox(height: 20),
+              Align(alignment: Alignment.topLeft, child: Text(' Trending', style: TextStyle(fontSize: 20)))
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -37,7 +47,12 @@ class _ExplorePageState extends State<ExplorePage> {
         children: [
           item.icon,
           SizedBox(width: 10),
-          Text(item.title, style: TextStyle(color: Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis),
+          Text(
+            item.title,
+            style: TextStyle(color: Colors.white),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
           Spacer(),
           Expanded(child: item.image),
         ],

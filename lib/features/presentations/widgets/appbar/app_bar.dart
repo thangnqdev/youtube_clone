@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:youtube/core/constants/assets/app_images.dart';
 import 'package:youtube/core/constants/assets/app_vectors.dart';
 import 'package:youtube/features/presentations/bloc/is_dark_mode.dart';
+import 'package:youtube/features/presentations/pages/user/user_page.dart';
 import 'package:youtube/features/presentations/widgets/theme/app_colors.dart';
 
 class BaseAppBar extends StatelessWidget {
@@ -61,7 +62,9 @@ class BaseAppBar extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => UserPage()));
+                },
                 icon: Icon(Icons.account_circle_rounded),
               ),
             ],
