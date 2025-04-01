@@ -5,10 +5,13 @@ import 'package:youtube/features/presentations/bloc/navigation_bloc.dart';
 import 'package:youtube/features/presentations/pages/explore/pages/body_explore_page.dart';
 import 'package:youtube/features/presentations/pages/explore/pages/explore_page.dart';
 import 'package:youtube/features/presentations/pages/home/pages/body_home_page.dart';
+import 'package:youtube/features/presentations/pages/library/pages/body_library_page.dart';
+import 'package:youtube/features/presentations/pages/library/pages/top_body_library_page.dart';
 import 'package:youtube/features/presentations/pages/library/pages/library_page.dart';
 import 'package:youtube/features/presentations/pages/subscription/pages/subscription_page.dart';
 import 'package:youtube/features/presentations/widgets/appbar/app_bar.dart';
 import 'package:youtube/features/presentations/widgets/appbar/sup_app_bar.dart';
+import 'package:youtube/features/presentations/widgets/appbar/sup_app_bar_supscription.dart';
 import 'package:youtube/features/presentations/widgets/navigation/navigation_bar.dart';
 import 'package:youtube/features/presentations/widgets/theme/app_colors.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -178,7 +181,7 @@ class _HomePageState extends State<HomePage>
     final body = switch (currentIndex) {
       0 => BodyHomePage(controller: animationController, videoId: videoId),
       1 => const ExplorePage(),
-      3 => const SubscriptionPage(),
+      3 => SubscriptionPage(controller: animationController, videoId: videoId),
       4 => const LibraryPage(),
       _ => BodyHomePage(controller: animationController, videoId: videoId),
     };
@@ -192,8 +195,26 @@ class _HomePageState extends State<HomePage>
             const BaseAppBar(),
             const SupAppBar(),
             body,
-            BodyExplorePage(controller: animationController, videoId: videoId)
+            BodyExplorePage(controller: animationController, videoId: videoId),
           ],
+        ),
+      );
+    } else if (currentIndex == 3) {
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: CustomScrollView(
+          scrollDirection: Axis.vertical,
+          physics: AlwaysScrollableScrollPhysics(),
+          slivers: [const BaseAppBar(), const SupAppBarSupscription(), body],
+        ),
+      );
+    } else if (currentIndex == 4) {
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: CustomScrollView(
+          scrollDirection: Axis.vertical,
+          physics: AlwaysScrollableScrollPhysics(),
+          slivers: [const BaseAppBar(), body, TopBodyLibraryPage(), BodyLibraryPage()],
         ),
       );
     } else {

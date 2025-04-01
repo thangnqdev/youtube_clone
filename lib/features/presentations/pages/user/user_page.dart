@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:youtube/core/constants/assets/app_vectors.dart';
+import 'package:youtube/core/network/auth_service.dart';
 import 'package:youtube/features/domain/entities/item_config_user.dart';
 import 'package:youtube/features/presentations/bloc/is_dark_mode.dart';
 import 'package:youtube/features/presentations/pages/home/pages/home_page.dart';
-import 'package:youtube/features/presentations/pages/sign_in_demo.dart';
 import 'package:youtube/features/presentations/widgets/theme/app_colors.dart';
 
 class UserPage extends StatelessWidget {
@@ -115,7 +115,7 @@ class UserPage extends StatelessWidget {
         onTap:
             () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => SignInDemo()),
+              MaterialPageRoute(builder: (context) => HomePage()),
             ),
         child: Icon(Icons.arrow_back_ios_new),
       ),
@@ -150,9 +150,12 @@ class UserPage extends StatelessWidget {
                   children: [
                     Text('username'),
                     Text('gmail'),
-                    Text(
-                      'Manage Your Google Account',
-                      style: TextStyle(color: AppColors.news),
+                    GestureDetector(
+                      onTap: () => handleSignIn(),
+                      child: Text(
+                        'Manage Your Google Account',
+                        style: TextStyle(color: AppColors.news),
+                      ),
                     ),
                   ],
                 ),

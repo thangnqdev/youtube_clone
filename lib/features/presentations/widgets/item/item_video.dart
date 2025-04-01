@@ -10,6 +10,10 @@ class ItemVideo extends StatelessWidget {
   final String channelTitle;
   final String publishedAt;
   final int viewCount;
+  final double heightImg;
+  final double widthImg;
+  final double sizeTitleVideo;
+  final double sizeTitleChannel;
   const ItemVideo({
     super.key,
     required this.thumbnailUrl,
@@ -17,6 +21,10 @@ class ItemVideo extends StatelessWidget {
     required this.channelTitle,
     required this.publishedAt,
     required this.viewCount,
+    required this.heightImg,
+    required this.widthImg,
+    required this.sizeTitleVideo,
+    required this.sizeTitleChannel,
   });
 
   @override
@@ -26,8 +34,8 @@ class ItemVideo extends StatelessWidget {
         Image.network(
           thumbnailUrl,
           fit: BoxFit.fill,
-          height: 200,
-          width: double.infinity,
+          height: heightImg,
+          width: widthImg, 
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(8, 16, 8, 0),
@@ -66,7 +74,7 @@ class ItemVideo extends StatelessWidget {
                               maxLines: 1,
                               softWrap: true,
                               style: TextStyle(
-                                fontSize: 12,
+                                fontSize: sizeTitleChannel,
                                 color: Color(0XFF606060),
                                 overflow: TextOverflow.ellipsis,
                               ),

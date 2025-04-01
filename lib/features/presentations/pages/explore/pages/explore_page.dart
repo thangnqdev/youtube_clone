@@ -15,19 +15,15 @@ class _ExplorePageState extends State<ExplorePage> {
     return SliverToBoxAdapter(
       child: Column(
         children: [
-          Column(
-            children: [
-              Wrap(
-                spacing: 2,
-                runSpacing: 2,
-                children: List.generate(items.length, (index) {
-                  return itemLayout(items[index], context);
-                }),
-              ),
-              SizedBox(height: 20),
-              Align(alignment: Alignment.topLeft, child: Text(' Trending', style: TextStyle(fontSize: 20)))
-            ],
+          Wrap(
+            spacing: 2,
+            runSpacing: 2,
+            children: List.generate(items.length, (index) {
+              return itemLayout(items[index], context);
+            }),
           ),
+          SizedBox(height: 20),
+          Align(alignment: Alignment.topLeft, child: Text(' Trending', style: TextStyle(fontSize: 20))),
         ],
       ),
     );

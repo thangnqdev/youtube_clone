@@ -61,6 +61,10 @@ class _BodyHomePageState extends State<BodyHomePage> {
       channelTitle: video.channelTitle,
       publishedAt: video.publishedAt,
       viewCount: video.viewCount,
+      widthImg: double.infinity,
+      heightImg: 200,
+      sizeTitleChannel: 12,
+      sizeTitleVideo: 15,
     );
   }
 }

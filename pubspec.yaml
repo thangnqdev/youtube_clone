@@ -105,5 +105,17 @@ flutter:
     - assets/vectors/verified_user_dark_mode.svg
     - assets/vectors/video_library_dark_mode.svg
 
+    - assets/vectors/ic_access_time.svg
+    - assets/vectors/ic_download.svg
+    - assets/vectors/ic_history.svg
+    - assets/vectors/ic_like.svg
+    - assets/vectors/ic_local_movies.svg
+    - assets/vectors/ic_play.svg
+    - assets/vectors/ic_access_time_dark_mode.svg
+    - assets/vectors/ic_download_dark_mode.svg
+    - assets/vectors/ic_history_dark_mode.svg
+    - assets/vectors/ic_like_dark_mode.svg
+    - assets/vectors/ic_local_movies_dark_mode.svg
+    - assets/vectors/ic_play_dark_mode.svg
 
 

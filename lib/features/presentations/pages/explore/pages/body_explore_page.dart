@@ -61,6 +61,10 @@ class _BodyExplorePageState extends State<BodyExplorePage> {
       channelTitle: video.channelTitle,
       publishedAt: video.publishedAt,
       viewCount: video.viewCount,
+      heightImg: 200,
+      widthImg: double.infinity,
+      sizeTitleChannel: 15,
+      sizeTitleVideo: 12,
     );
   }
 }

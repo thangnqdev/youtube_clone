@@ -120,5 +120,31 @@ class AppVectors {
   static const verifiedUserDarkMode = 'assets/vectors/verified_user_dark_mode.svg';
   
   static const videoLibraryDarkMode = 'assets/vectors/video_library_dark_mode.svg';
+
+  // library page light mode
+  static const accessTime = 'assets/vectors/ic_access_time.svg';
+  
+  static const download = 'assets/vectors/ic_download.svg';
+
+  static const history = 'assets/vectors/ic_history.svg';
+  
+  static const like = 'assets/vectors/ic_like.svg';
+  
+  static const movies = 'assets/vectors/ic_local_movies.svg';
+  
+  static const play = 'assets/vectors/ic_play.svg';
+
+  // library page light mode
+  static const accessTimeDarkMode = 'assets/vectors/ic_access_time_dark_mode.svg';
+  
+  static const downloadDarkMode = 'assets/vectors/ic_download_dark_mode.svg';
+  
+  static const historyDarkMode = 'assets/vectors/ic_history_dark_mode.svg';
+  
+  static const likeDarkMode = 'assets/vectors/ic_like_dark_mode.svg';
+  
+  static const moviesDarkMode = 'assets/vectors/ic_local_movies_dark_mode.svg';
+  
+  static const playDarkMode = 'assets/vectors/ic_play_dark_mode.svg';
 }
 
