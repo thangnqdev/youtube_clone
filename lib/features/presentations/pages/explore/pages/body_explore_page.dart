@@ -5,15 +5,11 @@ import 'package:youtube/features/presentations/pages/explore/pages/bloc/list_vid
 import 'package:youtube/features/presentations/pages/explore/pages/bloc/list_video_trending_event.dart';
 import 'package:youtube/features/presentations/pages/explore/pages/bloc/list_video_trending_state.dart';
 import 'package:youtube/features/presentations/widgets/item/item_video.dart';
+import 'package:youtube/features/presentations/widgets/theme/app_colors.dart';
 
 class BodyExplorePage extends StatefulWidget {
-  final AnimationController controller;
-  final Function(String) videoId;
-  const BodyExplorePage({
-    super.key,
-    required this.controller,
-    required this.videoId,
-  });
+  final Function(String) callBack;
+  const BodyExplorePage({super.key, required this.callBack});
 
   @override
   State<BodyExplorePage> createState() => _BodyExplorePageState();
@@ -31,15 +27,16 @@ class _BodyExplorePageState extends State<BodyExplorePage> {
     return BlocBuilder<ListVideoTrendingBloc, ListVideoTrendingState>(
       builder: (context, state) {
         if (state is ListVideoTrendingLoading) {
-          return SliverToBoxAdapter(child: CircularProgressIndicator());
+          return SliverToBoxAdapter(
+            child: Center(child: SizedBox(child: CircularProgressIndicator(color: AppColors.subText))),
+          );
         } else if (state is ListVideoTrendingSuccess) {
           return SliverList.builder(
             itemBuilder: (context, index) {
               final video = state.videos[index];
               return GestureDetector(
                 onTap: () {
-                  widget.controller.forward();
-                  widget.videoId(video.id);
+                  widget.callBack(video.id);
                 },
                 child: itemVideoLayout(context, video),
               );

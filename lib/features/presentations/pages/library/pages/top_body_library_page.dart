@@ -7,7 +7,8 @@ import 'package:youtube/features/presentations/pages/home/bloc/list_video_state.
 import 'package:youtube/features/presentations/widgets/theme/app_colors.dart';
 
 class TopBodyLibraryPage extends StatefulWidget {
-  const TopBodyLibraryPage({super.key});
+  final Function(String) callBack;
+  const TopBodyLibraryPage({super.key, required this.callBack});
 
   @override
   State<TopBodyLibraryPage> createState() => _TopBodyLibraryPageState();
@@ -26,16 +27,28 @@ class _TopBodyLibraryPageState extends State<TopBodyLibraryPage> {
     return BlocBuilder<ListVideoBloc, ListVideoState>(
       builder: (context, state) {
         if (state is ListVideoLoading) {
-          return SliverToBoxAdapter(child: CircularProgressIndicator());
+          return SliverToBoxAdapter(
+            child: Center(
+              child: SizedBox(
+                child: CircularProgressIndicator(color: AppColors.primary),
+              ),
+            ),
+          );
         } else if (state is ListVideoSuccess) {
           return SliverToBoxAdapter(
             child: SizedBox(
               height: 130,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
+                itemCount: state.videos.length,
                 itemBuilder: (context, index) {
                   final video = state.videos[index];
-                  return itemVideoLibrary(context, video);
+                  return GestureDetector(
+                    onTap: () {
+                      widget.callBack(video.id);
+                    },
+                    child: itemVideoLibrary(context, video),
+                  );
                 },
               ),
             ),

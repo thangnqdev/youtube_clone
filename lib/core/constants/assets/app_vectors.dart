@@ -146,5 +146,8 @@ class AppVectors {
   static const moviesDarkMode = 'assets/vectors/ic_local_movies_dark_mode.svg';
   
   static const playDarkMode = 'assets/vectors/ic_play_dark_mode.svg';
+
+  //logout
+  static const icLogOut = 'assets/vectors/ic_logout.svg';
 }
 

@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:youtube/core/di/dependency_injection.dart';
 import 'package:youtube/features/presentations/bloc/navigation_bloc.dart';
@@ -14,7 +13,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(MyApp());
 }
 

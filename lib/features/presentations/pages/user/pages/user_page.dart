@@ -1,99 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:youtube/core/constants/assets/app_vectors.dart';
 import 'package:youtube/core/network/auth_service.dart';
 import 'package:youtube/features/domain/entities/item_config_user.dart';
 import 'package:youtube/features/presentations/bloc/is_dark_mode.dart';
 import 'package:youtube/features/presentations/pages/home/pages/home_page.dart';
+import 'package:youtube/features/presentations/pages/user/widget/item_config_user.dart';
 import 'package:youtube/features/presentations/widgets/theme/app_colors.dart';
 
-class UserPage extends StatelessWidget {
+class UserPage extends StatefulWidget {
   const UserPage({super.key});
 
   @override
+  State<UserPage> createState() => _UserPageState();
+}
+
+class _UserPageState extends State<UserPage> {
+  String? _imageUrl;
+  String? _name;
+  String? _email;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserInfo();
+  }
+
+  Future<void> _loadUserInfo() async {
+    SharedPreferences prefGet = await SharedPreferences.getInstance();
+    setState(() {
+      _imageUrl = prefGet.getString('photoURL');
+      _name = prefGet.getString('displayName');
+      _email = prefGet.getString('email');
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    List<ItemConfigUser> itemsConfig = <ItemConfigUser>[
-      ItemConfigUser(
-        SvgPicture.asset(
-          context.isDarkMode
-              ? AppVectors.personOutlineDarkMode
-              : AppVectors.personOutlineLightMode,
-        ),
-        'Your Channel',
-      ),
-      ItemConfigUser(
-        SvgPicture.asset(
-          context.isDarkMode
-              ? AppVectors.settingStudioDarkMode
-              : AppVectors.settingStudioLightMode,
-        ),
-        'YouTube Studio',
-      ),
-      ItemConfigUser(
-        SvgPicture.asset(
-          context.isDarkMode
-              ? AppVectors.barCharDarkMode
-              : AppVectors.barCharLightMode,
-        ),
-        'Time watched',
-      ),
-      ItemConfigUser(
-        SvgPicture.asset(
-          context.isDarkMode
-              ? AppVectors.playButtonDarkMode
-              : AppVectors.playButtonLightMode,
-        ),
-        'Get YouTube Premium',
-      ),
-      ItemConfigUser(
-        SvgPicture.asset(
-          context.isDarkMode
-              ? AppVectors.attachMoneyDarkMode
-              : AppVectors.attachMoneyLightMode,
-        ),
-        'Purchases and memberships',
-      ),
-      ItemConfigUser(
-        SvgPicture.asset(
-          context.isDarkMode
-              ? AppVectors.videoLibraryDarkMode
-              : AppVectors.videoLibraryLightMode,
-        ),
-        'Switch account',
-      ),
-      ItemConfigUser(
-        SvgPicture.asset(
-          context.isDarkMode
-              ? AppVectors.incognitoDarkMode
-              : AppVectors.incognitoLightMode,
-        ),
-        'Turn on Incognito',
-      ),
-      ItemConfigUser(
-        SvgPicture.asset(
-          context.isDarkMode
-              ? AppVectors.verifiedUserDarkMode
-              : AppVectors.verifiedUserLightMode,
-        ),
-        'Your data in YouTube',
-      ),
-      ItemConfigUser(
-        SvgPicture.asset(
-          context.isDarkMode
-              ? AppVectors.settingsDarkMode
-              : AppVectors.settingsLightMode,
-        ),
-        'Settings',
-      ),
-      ItemConfigUser(
-        SvgPicture.asset(
-          context.isDarkMode
-              ? AppVectors.helpOutlineDarkMode
-              : AppVectors.helpOutlineLightMode,
-        ),
-        'Help and feedback',
-      ),
-    ];
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -101,7 +45,7 @@ class UserPage extends StatelessWidget {
           slivers: [
             buildAppBar(context),
             buildTopBody(context),
-            buildBody(context, itemsConfig),
+            buildBody(context, getItemsConfig(context)),
           ],
         ),
       ),
@@ -142,16 +86,24 @@ class UserPage extends StatelessWidget {
                 SizedBox(
                   width: 40,
                   height: 40,
-                  child: Icon(Icons.account_circle),
+                  child:
+                      _imageUrl != null
+                          ? CircleAvatar(
+                            backgroundImage: NetworkImage(_imageUrl!),
+                          )
+                          : Icon(Icons.account_circle),
                 ),
                 SizedBox(width: 10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('username'),
-                    Text('gmail'),
+                    Text(_name ?? 'username'),
+                    Text(_email ?? 'email'),
                     GestureDetector(
-                      onTap: () => handleSignIn(),
+                      onTap: () async {
+                        await AuthService().SignInWithGoogle();
+                        await _loadUserInfo();
+                      },
                       child: Text(
                         'Manage Your Google Account',
                         style: TextStyle(color: AppColors.news),
@@ -172,9 +124,15 @@ class UserPage extends StatelessWidget {
       itemBuilder: (context, index) {
         if (index == 1) {
           return itemYoutubeStudio(context, items[index]);
-        }else{
+        } else if (index == 10) {
+          return GestureDetector(
+            onTap: () {
+              showConfirmDialog(context);
+            },
+            child: itemConfigLayout(context, items[index]),
+          );
+        } else {
           return itemConfigLayout(context, items[index]);
-
         }
       },
       itemCount: items.length,
@@ -220,6 +178,34 @@ class UserPage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void showConfirmDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder:
+          (context) => AlertDialog(
+            title: Text('Xác nhận'),
+            content: Text('Bạn có chắc chắn muốn đăng xuất ?'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                  return;
+                },
+                child: Text('Không'),
+              ),
+              TextButton(
+                onPressed: () async {
+                  Navigator.of(context).pop(true);
+                  await AuthService().singOut();
+                  await _loadUserInfo();
+                },
+                child: Text('Có'),
+              ),
+            ],
+          ),
     );
   }
 }

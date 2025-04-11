@@ -5,15 +5,11 @@ import 'package:youtube/features/presentations/pages/home/bloc/list_video_bloc.d
 import 'package:youtube/features/presentations/pages/home/bloc/list_video_event.dart';
 import 'package:youtube/features/presentations/pages/home/bloc/list_video_state.dart';
 import 'package:youtube/features/presentations/widgets/item/item_video.dart';
+import 'package:youtube/features/presentations/widgets/theme/app_colors.dart';
 
 class SubscriptionPage extends StatefulWidget {
-  final AnimationController controller;
-  final Function(String) videoId;
-  const SubscriptionPage({
-    super.key,
-    required this.controller,
-    required this.videoId,
-  });
+  final Function(String) callBack;
+  const SubscriptionPage({super.key, required this.callBack});
 
   @override
   State<SubscriptionPage> createState() => _SubscriptionPageState();
@@ -31,15 +27,16 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
     return BlocBuilder<ListVideoBloc, ListVideoState>(
       builder: (context, state) {
         if (state is ListVideoLoading) {
-          return SliverToBoxAdapter(child: CircularProgressIndicator());
+          return SliverToBoxAdapter(
+            child: Center(child: SizedBox(child: CircularProgressIndicator(color: AppColors.primary))),
+          );
         } else if (state is ListVideoSuccess) {
           return SliverList.builder(
             itemBuilder: (context, index) {
               final video = state.videos[index];
               return GestureDetector(
                 onTap: () {
-                  widget.controller.forward();
-                  widget.videoId(video.id);
+                  widget.callBack(video.id);
                 },
                 child: itemVideoLayout(context, video),
               );
